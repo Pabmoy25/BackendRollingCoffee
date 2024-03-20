@@ -4,6 +4,7 @@ import cors from 'cors'
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url'
+import ProductosRouter from './src/routes/productos.routes.js';
 
 // 1 - Configurar un puerto
 const app = express();
@@ -28,10 +29,11 @@ app.use (express.static(path.join(__dirname, '/public')))
 
 
 // 3 - Configurar las rutas
-//http://localhost:4001/productos
-app.get('/', (req, res)=>{
+//http://localhost:4001/api
+app.use('/api', ProductosRouter)
+
+/* app.get('/nuevo', (req, res)=>{
     //agregar toda la logica
 console.log('procesando una solicitud get');
-res.send('Respuesta del backend rollingcoffe')
-
-})
+res.send('Respuesta del backend rollingcoffe') 
+})*/
