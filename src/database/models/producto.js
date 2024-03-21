@@ -1,4 +1,3 @@
-import { kMaxLength } from "buffer";
 import mongoose, { Schema } from "mongoose";
 
 const productoSchema = new Schema({
@@ -7,13 +6,13 @@ const productoSchema = new Schema({
     required: true,
     minLengh: 2,
     MaxLength: 40,
-    unique: true,
+    unique: true
   },
   precio: {
     type: Number,
     required: true,
     min: 50,
-    Max: 10000,
+    Max: 10000
   },
   imagen: {
     type: String,
@@ -34,14 +33,14 @@ const productoSchema = new Schema({
     type: String,
     required: true,
     minLengh: 5,
-    MaxLength: 40,
+    MaxLength: 40
   },
 
   descripcion_amplia: {
     type: String,
     required: true,
     minLengh: 50,
-    MaxLength: 500,
+    MaxLength: 500
   },
 });
 
