@@ -1,10 +1,16 @@
 import Producto from "../database/models/producto.js";
 
 
-export const listarProductos = (req, res)=>{
+export const listarProductos = async(req, res)=>{
+    try {
+       const productos = await Producto.find();
+       res.status(200).json(productos)
+ 
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje:"Error al buscar los productos"})
+    }
     
-console.log('aqui preparo la lista de productos');
-res.send('Enviando la lista de productos')
 
 }
 
