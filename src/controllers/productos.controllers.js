@@ -34,7 +34,6 @@ export const crearProductos = async (req, res) => {
   }
 };
 
-
 export const obtenerProducto = async (req, res) => {
   try {
     //extraer el id
@@ -56,4 +55,21 @@ export const obtenerProducto = async (req, res) => {
   }
 };
 
-
+export const editarProducto = async(req, res)=>{
+  try{
+     //verificar si el producto existe
+     const productoBuscado = await Producto.findById(req.params.id);
+     if(!productoBuscado){
+         //responder si no es correcto
+         return res.status(404).json({mensaje:"No se encontro el producto con el id especificado"})
+     }
+     //si el producto existe y sus datos son validados correctamente, solicitamos actualizar
+     await Producto.findByIdAndUpdate(req.params.id, req.body)
+     //responder al usuario
+     res.status(200).json({mensaje: "El producto fue editado exitosamente"})
+  }
+  catch(error){
+     console.error(error);
+     res.status(500).json({mensaje:"Ocurrio un error no se pudo editar el producto"})
+  }
+};
